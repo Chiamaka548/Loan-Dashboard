@@ -83,7 +83,7 @@ const DisbursedLoansChart = () => {
   };
 
   return (
-    <div className="p-2 bg-white rounded-lg font-axiforma text-sm">
+    <div className='w-full max-w-4xl mx-auto p-2 bg-white rounded-lg font-axiforma text-sm'>
       {/* Header Section */}
       <div className="flex justify-between items-start mb-8">
         <div>
