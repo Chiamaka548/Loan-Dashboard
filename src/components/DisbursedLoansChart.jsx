@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import DropdownIcon from '../assets/dropdown.svg';
 import DownloadIcon from '../assets/Arrow Download.svg';
 import ShareIcon from '../assets/Share Android.svg';
 import '../styles/slider.css';
 
-ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend );
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const DisbursedLoansChart = () => {
   const chartRef = useRef(null);
@@ -83,44 +83,43 @@ const DisbursedLoansChart = () => {
   };
 
   return (
-    <div className='w-full max-w-4xl mx-auto p-2 bg-white rounded-lg font-axiforma text-sm'>
-      {/* Header Section */}
-      <div className="flex justify-between items-start mb-8">
+    <div className='w-full mx-auto p-4 bg-white rounded-lg font-axiforma text-sm'>
+      {/* Header Section - Responsive */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <h3 className="text-xl font-semibold text-gray-800 flex items-center">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800 flex items-center">
               Disbursed Loans
               <img src={DropdownIcon} alt="Dropdown Icon" className="ml-2 w-4 h-4" />
             </h3>
           </div>
           <span className="text-gray-600 text-sm font-medium mt-2 block">
-              Total: ₦8,063,000
+            Total: ₦8,063,000
           </span>
         </div>
 
         {/* Right: Dropdown + Icons */}
         <div className="flex items-center space-x-3">
-        {/* Year Dropdown */}
+          {/* Year Dropdown */}
           <select className="bg-white border border-gray-300 text-gray-600 rounded-md p-1 text-sm focus:outline-none">
             <option>2022</option>
             <option>2023</option>
           </select>
 
-        {/* Share Icon Image */}
-        <div className="bg-gray-100 p-2 rounded-xl hover:bg-gray-200 cursor-pointer">
-          <img src={ShareIcon} alt="Share" className="w-5 h-5" />
-        </div>
+          {/* Share Icon */}
+          <div className="bg-gray-100 p-2 rounded-xl hover:bg-gray-200 cursor-pointer">
+            <img src={ShareIcon} alt="Share" className="w-5 h-5" />
+          </div>
 
-        {/* Download Icon Image */}
-        <div className="bg-gray-100 p-2 rounded-xl hover:bg-gray-200 cursor-pointer">
-          <img src={DownloadIcon} alt="Download" className="w-5 h-5" />
+          {/* Download Icon */}
+          <div className="bg-gray-100 p-2 rounded-xl hover:bg-gray-200 cursor-pointer">
+            <img src={DownloadIcon} alt="Download" className="w-5 h-5" />
+          </div>
         </div>
       </div>
-      </div>
 
-
-      {/* Chart */}
-      <div className="relative h-72">
+      {/* Chart - Responsive height */}
+      <div className="relative h-64 md:h-72">
         <Line ref={chartRef} data={data} options={options} />
         {selectedPoint !== null && (
           <div
@@ -138,17 +137,21 @@ const DisbursedLoansChart = () => {
         )}
       </div>
 
-      {/* Slider */}
-      <div className="mt-4 bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-6 text-xs text-gray-600">
-        <span className='mr-6'>Apr - Dec</span>
-        <div className="h-4 w-px bg-gray-300">
-          <div className='w-80' >
-            <input type="range" min="1" max="12" defaultValue="9" className="custom-slider w-full"
-              style={{
-                background: 'linear-gradient(to right, #2563EB 0%, #2563EB 75%, #E5E7EB 75%)',
-              }}
-            />
-          </div>
+      {/* Slider - Responsive */}
+      <div className="mt-4 bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-3 md:gap-6 text-xs text-gray-600 overflow-x-auto">
+        <span className='whitespace-nowrap'>Apr - Dec</span>
+        <div className="h-4 w-px bg-gray-300"></div>
+        <div className='flex-1 min-w-[200px] max-w-[400px]'>
+          <input 
+            type="range" 
+            min="1" 
+            max="12" 
+            defaultValue="9" 
+            className="custom-slider w-full"
+            style={{
+              background: 'linear-gradient(to right, #2563EB 0%, #2563EB 75%, #E5E7EB 75%)',
+            }}
+          />
         </div>
       </div>
     </div>
